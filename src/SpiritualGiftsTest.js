@@ -1,182 +1,154 @@
 import React, { useState, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Card, Button, ProgressBar, Badge, Modal } from "react-bootstrap";
+import {
+  Container,
+  Card,
+  Button,
+  ProgressBar,
+  Badge,
+  Modal,
+} from "react-bootstrap";
 import SlideQuestion from "./slideQuestion";
 
 const QUESTIONS = [
   {
     id: 1,
-    text: "Oro creyendo en la sanidad física de los enfermos.",
-    category: "sanidades",
+    text: "He sentido en momentos importantes una claridad que me ayuda a tomar decisiones difíciles.",
+    category: "palabra_sabiduria",
   },
   {
     id: 2,
-    text: "Percibo la intención divina detrás de pasajes bíblicos extensos.",
-    category: "palabra_ciencia",
+    text: "He sentido la capacidad de interpretar mensajes en lenguas para beneficio del grupo o iglesia.",
+    category: "interpretacion",
   },
   {
     id: 3,
-    text: "Persisto en oración sabiendo que Dios cumplirá sus promesas.",
-    category: "fe",
+    text: "He experimentado hablar en lenguas que no conozco y que me han edificado espiritualmente.",
+    category: "lenguas",
   },
   {
     id: 4,
-    text: "Siento la guía del Espíritu para dirigir conversaciones delicadas.",
-    category: "palabra_sabiduria",
+    text: "He visto cómo oraciones hechas con fe han producido cambios concretos en la vida de alguien.",
+    category: "fe",
   },
   {
     id: 5,
-    text: "Considero la sanidad un don operativo dentro de la iglesia.",
-    category: "sanidades",
+    text: "He reconocido cuando una manifestación espiritual no provenía del Espíritu Santo.",
+    category: "discernimiento",
   },
   {
     id: 6,
-    text: "He apreciado sanidad espiritual mediante la oración.",
-    category: "sanidades",
+    text: "He aplicado enseñanzas bíblicas que han cambiado el rumbo de situaciones en mi vida o en la de otros.",
+    category: "palabra_sabiduria",
   },
   {
     id: 7,
-    text: "Mi experiencia con lenguas me edifica personalmente.",
-    category: "lenguas",
-  },
-  {
-    id: 8,
-    text: "Confío en Dios para intervenir de forma extraordinaria.",
-    category: "milagros",
-  },
-  {
-    id: 9,
-    text: "Detecto cuando una enseñanza se aleja de la doctrina bíblica.",
-    category: "discernimiento",
-  },
-  {
-    id: 10,
-    text: "Siento que Dios me usa para advertir o confirmar su voluntad.",
-    category: "profecia",
-  },
-  {
-    id: 11,
-    text: "Puedo advertir si una manifestación no viene del Espíritu.",
-    category: "discernimiento",
-  },
-  {
-    id: 12,
-    text: "He visto o esperado respuestas milagrosas a oraciones.",
-    category: "milagros",
-  },
-  {
-    id: 13,
-    text: "Doy consejos sabios y bíblicos en situaciones personales complejas.",
-    category: "palabra_sabiduria",
-  },
-  {
-    id: 14,
-    text: "Tengo claridad sobrenatural al enseñar doctrinas difíciles.",
-    category: "palabra_ciencia",
-  },
-  {
-    id: 15,
-    text: "Al predicar siento que el Espíritu da autoridad divina.",
-    category: "profecia",
-  },
-  {
-    id: 16,
-    text: "Identifico soluciones prudentes respaldadas en Escrituras.",
-    category: "palabra_sabiduria",
-  },
-  {
-    id: 17,
-    text: "Considero que el don de lenguas fue señal relevante en Pentecostés.",
-    category: "lenguas",
-  },
-  {
-    id: 18,
-    text: "Mis evaluaciones protegen a otros de doctrinas engañosas.",
-    category: "discernimiento",
-  },
-  {
-    id: 19,
-    text: "Oro con expectación de actos sobrenaturales hoy.",
-    category: "milagros",
-  },
-  {
-    id: 20,
-    text: "Ayudo a otros a tomar decisiones trascendentales con claridad espiritual.",
-    category: "palabra_sabiduria",
-  },
-  {
-    id: 21,
-    text: "Puedo comprender y traducir mensajes en lenguas.",
-    category: "interpretacion",
-  },
-  {
-    id: 22,
-    text: "Mis palabras llevan dirección espiritual clara en reuniones.",
-    category: "profecia",
-  },
-  {
-    id: 23,
-    text: "Puedo aplicar textos bíblicos con exactitud en debates.",
-    category: "palabra_ciencia",
-  },
-  {
-    id: 24,
-    text: "Creo que Dios aún hace señales que confirman su evangelio.",
-    category: "milagros",
-  },
-  {
-    id: 25,
-    text: "Animo a otros a creer en lo imposible con base en la Palabra.",
-    category: "fe",
-  },
-  {
-    id: 26,
-    text: "Reconozco que solo debe ejercerse públicamente con intérprete.",
-    category: "interpretacion",
-  },
-  {
-    id: 27,
-    text: "Actúo confiando en promesas divinas aunque parezcan imposibles.",
-    category: "fe",
-  },
-  {
-    id: 28,
-    text: "Hablo la verdad de Dios con convicción y claridad pública.",
-    category: "profecia",
-  },
-  {
-    id: 29,
-    text: "Puedo interpretar lo que alguien habla en lengua desconocida.",
-    category: "interpretacion",
-  },
-  {
-    id: 30,
-    text: "Puedo distinguir rápidamente si una enseñanza no es bíblica.",
-    category: "discernimiento",
-  },
-  {
-    id: 31,
-    text: "Comprendo y explico con precisión verdades bíblicas profundas.",
-    category: "palabra_ciencia",
-  },
-  {
-    id: 32,
-    text: "Me esfuerzo en llevar consuelo a los enfermos creyendo en Dios.",
+    text: "He sentido que la oración ha sido respondida con sanidad física o espiritual.",
     category: "sanidades",
   },
   {
-    id: 33,
-    text: "Pienso que la interpretación construye cuando otros hablan en lenguas.",
+    id: 8,
+    text: "En reuniones, he expresado mensajes que han ayudado a otros a entender la voluntad de Dios.",
+    category: "profecia",
+  },
+  {
+    id: 9,
+    text: "He tenido momentos en que una palabra en lenguas fue claramente interpretada y edificó a otros.",
     category: "interpretacion",
   },
   {
-    id: 34,
-    text: "Mi confianza en Dios permanece firme ante grandes pruebas.",
-    category: "fe",
+    id: 10,
+    text: "He participado en momentos donde alguien fue sanado o consolado de forma evidente.",
+    category: "sanidades",
+  },
+  {
+    id: 11,
+    text: "He vivido situaciones en las que Dios ha intervenido de manera sobrenatural a través de mi oración.",
+    category: "milagros",
+  },
+  {
+    id: 12,
+    text: "He sentido confianza para actuar en circunstancias que parecían desesperadas.",
+    category: "palabra_ciencia",
+  },
+  {
+    id: 13,
+    text: "He sentido una convicción fuerte y clara para hablar de parte de Dios en momentos precisos.",
+    category: "profecia",
+  },
+  {
+    id: 14,
+    text: "He podido distinguir cuando una enseñanza o experiencia no estaba alineada con la verdad bíblica.",
+    category: "discernimiento",
+  },
+  {
+    id: 15,
+    text: "He orado con expectativa y he visto respuestas que me sorprendieron por su naturaleza milagrosa.",
+    category: "milagros",
+  },
+  {
+    id: 16,
+    text: "He visto que mi fe ha inspirado a otros a confiar en Dios en medio de problemas.",
+    category: "interpretacion",
+  },
+  {
+    id: 17,
+    text: "He hablado en público con palabras que han motivado o guiado a otros hacia Dios.",
+    category: "milagros",
+  },
+  {
+    id: 18,
+    text: "En circunstancias difíciles, he recibido una percepción profunda para actuar con sabiduría espiritual.",
+    category: "interpretacion",
+  },
+  {
+    id: 19,
+    text: "He experimentado una fe firme que me ha sostenido cuando parecía imposible seguir adelante.",
+    category: "palabra_ciencia",
+  },
+  {
+    id: 20,
+    text: "He sentido que Dios me guía en mi manera de hablar para fortalecer a otros en la fe.",
+    category: "profecia",
+  },
+  {
+    id: 21,
+    text: "He sentido la convicción de que Dios obró milagrosamente en alguna situación cercana.",
+    category: "sanidades",
+  },
+  {
+    id: 22,
+    text: "He sentido en mi interior que debo tener cuidado con ciertas doctrinas o enseñanzas por no ser bíblicas.",
+    category: "discernimiento",
+  },
+  {
+    id: 23,
+    text: "En alguna ocasión, he sido testigo de eventos que no tienen explicación natural.",
+    category: "sanidades",
+  },
+  {
+    id: 24,
+    text: "He sabido cuándo era necesario advertir a otros sobre algo que venía en contra de la palabra de Dios.",
+    category: "profecia",
+  },
+  {
+    id: 25,
+    text: "He experimentado paz y confirmación interior después de entregar una palabra o consejo espiritual.",
+    category: "palabra_sabiduria",
+  },
+  {
+    id: 26,
+    text: "He podido explicar verdades bíblicas que otros no entendían claramente.",
+    category: "palabra_ciencia",
+  },
+  {
+    id: 27,
+    text: "He discernido entre diferentes influencias espirituales en un ambiente de iglesia o grupo cristiano.",
+    category: "discernimiento",
   },
   // Slide final de cierre (no es pregunta real)
   {
-    id: 35,
+    id: 28,
     text: "¡Has llegado al final del test!",
     category: null,
     isFinalSlide: true,
@@ -288,7 +260,7 @@ const SpiritualGiftsTest = () => {
             className="p-4 mx-auto border-0"
             style={{
               maxWidth: window.innerWidth <= 576 ? 420 : undefined,
-              borderRadius: 18
+              borderRadius: 18,
             }}
           >
             <div className="d-flex justify-content-center mb-5">
@@ -336,17 +308,20 @@ const SpiritualGiftsTest = () => {
             }}
           >
             <ProgressBar
-              now={((currentIndex + 1) / realQuestions.length) * 100}
+              now={((Math.min(currentIndex + 1, realQuestions.length)) / realQuestions.length) * 100}
               label={
                 <span style={{ fontWeight: "bold", fontSize: "1.35em" }}>
-                  {currentIndex + 1}/{realQuestions.length}
+                  {Math.min(currentIndex + 1, realQuestions.length)}/{realQuestions.length}
                 </span>
               }
               className="mb-3"
               variant={progressVariant}
             />
           </div>
-          <Card className="p-3 p-md-4 shadow-sm" style={{ borderRadius: 18, overflow: 'hidden' }}>
+          <Card
+            className="p-3 p-md-4 shadow-sm"
+            style={{ borderRadius: 18, overflow: "hidden" }}
+          >
             {/* Logo en la cabecera del test */}
             <div className="d-flex justify-content-center mb-4">
               <img
@@ -356,21 +331,29 @@ const SpiritualGiftsTest = () => {
                   maxWidth: window.innerWidth <= 576 ? 150 : 250,
                   width: "100%",
                   height: "auto",
-                  cursor: "pointer"
+                  cursor: "pointer",
                 }}
                 onClick={() => setShowExitModal(true)}
               />
             </div>
             {/* Modal de confirmación para salir */}
-            <Modal show={showExitModal} onHide={() => setShowExitModal(false)} centered>
+            <Modal
+              show={showExitModal}
+              onHide={() => setShowExitModal(false)}
+              centered
+            >
               <Modal.Header closeButton>
                 <Modal.Title>¿Cancelar el test?</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                ¿Estás seguro de querer cancelar el test y salir a la página de inicio?
+                ¿Estás seguro de querer cancelar el test y salir a la página de
+                inicio?
               </Modal.Body>
               <Modal.Footer>
-                <Button variant="secondary" onClick={() => setShowExitModal(false)}>
+                <Button
+                  variant="secondary"
+                  onClick={() => setShowExitModal(false)}
+                >
                   No, continuar con el test
                 </Button>
                 <Button
@@ -399,11 +382,29 @@ const SpiritualGiftsTest = () => {
                 {/* Carousel de preguntas con navegación siguiente/atrás solo con iconos */}
                 {/* Slide final de cierre */}
                 {QUESTIONS[currentIndex].isFinalSlide ? (
-                  <div className="w-100 text-center" style={{ minHeight: 180, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-                    <h3 className="text-center my-3 my-md-4" style={{ fontSize: "1.1rem", fontWeight: 700 }}>
+                  <div
+                    className="w-100 text-center"
+                    style={{
+                      minHeight: 180,
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <h3
+                      className="text-center my-3 my-md-4"
+                      style={{ fontSize: "1.1rem", fontWeight: 700 }}
+                    >
                       <strong>Fin del Test</strong>
                     </h3>
-                    <span style={{ fontSize: "1.1rem", fontWeight: 500, color: "#0d6efd" }}>
+                    <span
+                      style={{
+                        fontSize: "1.1rem",
+                        fontWeight: 500,
+                        color: "#0d6efd",
+                      }}
+                    >
                       {QUESTIONS[currentIndex].text}
                     </span>
                     {/* Botón para regresar a la pregunta anterior */}
@@ -418,16 +419,19 @@ const SpiritualGiftsTest = () => {
                         marginTop: 18,
                         display: "flex",
                         alignItems: "center",
-                        justifyContent: "center"
+                        justifyContent: "center",
                       }}
                       aria-label="Regresar"
                       onClick={handleBack}
                     >
-                    <span style={{ display: "inline-block" }}>&larr;</span>
+                      <span style={{ display: "inline-block" }}>&larr;</span>
                     </Button>
                   </div>
                 ) : (
-                  <SlideQuestion key={QUESTIONS[currentIndex].id} direction={slideDirection}>
+                  <SlideQuestion
+                    key={QUESTIONS[currentIndex].id}
+                    direction={slideDirection}
+                  >
                     <h3
                       className="text-center my-3 my-md-4"
                       style={{ fontSize: "1.1rem", fontWeight: 700 }}
