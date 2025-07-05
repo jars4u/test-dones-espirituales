@@ -13,138 +13,138 @@ import SlideQuestion from "./slideQuestion";
 const QUESTIONS = [
   {
     id: 1,
-    text: "He sentido en momentos importantes una claridad que me ayuda a tomar decisiones difíciles.",
-    category: "palabra_sabiduria",
-  },
-  {
-    id: 2,
-    text: "He sentido la capacidad de interpretar mensajes en lenguas para beneficio del grupo o iglesia.",
-    category: "interpretacion",
-  },
-  {
-    id: 3,
-    text: "He experimentado hablar en lenguas que no conozco y que me han edificado espiritualmente.",
+    text: "He experimentado una oración fluida en un idioma que no conozco y que edificó mi espíritu.",
     category: "lenguas",
   },
   {
+    id: 2,
+    text: "He sentido la convicción de interceder por sanidad y luego he visto resultados concretos.",
+    category: "sanidades",
+  },
+  {
+    id: 3,
+    text: "He sentido con claridad que debía evitar ciertas enseñanzas o líderes espirituales.",
+    category: "discernimiento",
+  },
+  {
     id: 4,
-    text: "He visto cómo oraciones hechas con fe han producido cambios concretos en la vida de alguien.",
-    category: "fe",
-  },
-  {
-    id: 5,
-    text: "He reconocido cuando una manifestación espiritual no provenía del Espíritu Santo.",
-    category: "discernimiento",
-  },
-  {
-    id: 6,
-    text: "He aplicado enseñanzas bíblicas que han cambiado el rumbo de situaciones en mi vida o en la de otros.",
-    category: "palabra_sabiduria",
-  },
-  {
-    id: 7,
-    text: "He sentido que mis oraciones han sido respondidas con sanidad física o espiritual.",
-    category: "sanidades",
-  },
-  {
-    id: 8,
-    text: "En reuniones, he expresado mensajes que han ayudado a otros a entender la voluntad de Dios.",
-    category: "profecia",
-  },
-  {
-    id: 9,
-    text: "He tenido momentos en que palabras en lenguas fueron claramente interpretadas y edificaron a otros.",
-    category: "interpretacion",
-  },
-  {
-    id: 10,
-    text: "He sido parte de momentos donde alguien fue sanado o consolado de forma evidente.",
-    category: "sanidades",
-  },
-  {
-    id: 11,
-    text: "He vivido situaciones en las que Dios ha intervenido de manera sobrenatural a través de mi oración.",
-    category: "milagros",
-  },
-  {
-    id: 12,
-    text: "He sentido confianza para actuar en circunstancias que parecían desesperadas.",
-    category: "palabra_ciencia",
-  },
-  {
-    id: 13,
-    text: "He sentido una convicción fuerte y clara para hablar de parte de Dios en momentos precisos.",
-    category: "palabra_ciencia",
-  },
-  {
-    id: 14,
-    text: "He podido distinguir cuando una enseñanza o experiencia no estaba alineada con la verdad bíblica.",
-    category: "discernimiento",
-  },
-  {
-    id: 15,
-    text: "He orado con expectativa y he visto respuestas que me sorprendieron por su naturaleza milagrosa.",
-    category: "milagros",
-  },
-  {
-    id: 16,
-    text: "He visto que mi fe ha inspirado a otros a confiar en Dios en medio de problemas.",
-    category: "fe",
-  },
-  {
-    id: 17,
-    text: "He hablado en público con palabras que han motivado o guiado a otros hacia Dios.",
-    category: "profecia",
-  },
-  {
-    id: 18,
-    text: "En circunstancias difíciles, he recibido una percepción profunda para actuar con sabiduría espiritual.",
-    category: "palabra_sabiduria",
-  },
-  {
-    id: 19,
-    text: "He experimentado una fe firme que me ha sostenido cuando parecía imposible seguir adelante.",
-    category: "fe",
-  },
-  {
-    id: 20,
-    text: "He sentido que Dios me guía en mi manera de hablar para fortalecer a otros en la fe.",
-    category: "profecia",
-  },
-  {
-    id: 21,
-    text: "He sentido la convicción de que Dios obró milagrosamente en alguna situación cercana.",
-    category: "milagros",
-  },
-  {
-    id: 22,
-    text: "He sentido en mi interior que debo tener cuidado con ciertas doctrinas o enseñanzas por no ser bíblicas.",
-    category: "discernimiento",
-  },
-  {
-    id: 23,
-    text: "En alguna ocasión, he sido testigo de eventos que no tienen explicación natural.",
-    category: "milagros",
-  },
-  {
-    id: 24,
-    text: "He sabido cuándo era necesario advertir a otros sobre algo que venía en contra de la palabra de Dios.",
-    category: "palabra_ciencia",
-  },
-  {
-    id: 25,
     text: "He experimentado paz y confirmación interior después de entregar una palabra o consejo espiritual.",
     category: "palabra_sabiduria",
   },
   {
-    id: 26,
+    id: 5,
+    text: "He alentado a otros a confiar en Dios cuando enfrentaban pruebas duras.",
+    category: "fe",
+  },
+  {
+    id: 6,
     text: "He podido explicar verdades bíblicas que otros no entendían claramente.",
     category: "palabra_ciencia",
   },
   {
-    id: 27,
-    text: "He discernido entre diferentes influencias espirituales en un ambiente de iglesia o grupo cristiano.",
+    id: 7,
+    text: "He sido instrumento para traer consuelo profundo a personas quebrantadas.",
+    category: "sanidades",
+  },
+  {
+    id: 8,
+    text: "He sentido que debía hablar con alguien y lo que dije fue justo lo que necesitaba oír.",
+    category: "profecia",
+  },
+  {
+    id: 9,
+    text: "He orado creyendo firmemente que Dios respondería, y lo ha hecho.",
+    category: "fe",
+  },
+  {
+    id: 10,
+    text: "He presenciado eventos que no tienen explicación natural tras orar con fe.",
+    category: "milagros",
+  },
+  {
+    id: 11,
+    text: "He sentido en momentos importantes una claridad que me ayuda a tomar decisiones difíciles.",
+    category: "palabra_sabiduria",
+  },
+  {
+    id: 12,
+    text: "He entregado mensajes que ayudaron a otros a corregir su camino espiritual.",
+    category: "profecia",
+  },
+  {
+    id: 13,
+    text: "He experimentado una comprensión profunda de pasajes bíblicos sin haberlos estudiado previamente.",
+    category: "palabra_ciencia",
+  },
+  {
+    id: 14,
+    text: "He compartido palabras que han impactado profundamente a otros en su caminar con Dios.",
+    category: "profecia",
+  },
+  {
+    id: 15,
+    text: "He aplicado conocimiento bíblico de manera precisa ante preguntas difíciles que otros me han hecho.",
+    category: "palabra_ciencia",
+  },
+  {
+    id: 16,
+    text: "He orado con expectativa y he visto a Dios obrar de forma extraordinaria.",
+    category: "milagros",
+  },
+  {
+    id: 17,
+    text: "He reconocido cuando una enseñanza o experiencia no provenía del Espíritu de Dios.",
     category: "discernimiento",
+  },
+  {
+    id: 18,
+    text: "He sido testigo de provisiones o respuestas que claramente fueron sobrenaturales.",
+    category: "milagros",
+  },
+  {
+    id: 19,
+    text: "He aplicado enseñanzas bíblicas que han cambiado el rumbo de situaciones en mi vida o en la de otros.",
+    category: "palabra_sabiduria",
+  },
+  {
+    id: 20,
+    text: "He comprendido claramente el significado de una lengua hablada por otro creyente.",
+    category: "interpretacion",
+  },
+  {
+    id: 21,
+    text: "He ayudado a interpretar oraciones en lenguas en reuniones para que otros comprendieran el mensaje.",
+    category: "interpretacion",
+  },
+  {
+    id: 22,
+    text: "He experimentado una fe firme que me ha sostenido cuando todo parecía en contra.",
+    category: "fe",
+  },
+  {
+    id: 23,
+    text: "En momentos de adoración o intercesión he hablado en lenguas sin control consciente.",
+    category: "lenguas",
+  },
+  {
+    id: 24,
+    text: "Después de una manifestación en lenguas, he recibido entendimiento para explicarlo a otros.",
+    category: "interpretacion",
+  },
+  {
+    id: 25,
+    text: "He percibido influencias espirituales negativas en ambientes o personas sin que nadie me lo dijera.",
+    category: "discernimiento",
+  },
+  {
+    id: 26,
+    text: "Siento que orar en lenguas fortalece mi relación personal con Dios.",
+    category: "lenguas",
+  },
+  {
+    id: 27,
+    text: "He tenido una certeza profunda de que Dios obraría, incluso cuando todo parecía en contra.",
+    category: "fe",
   },
   // Slide final de cierre (no es pregunta real)
   {
@@ -173,8 +173,7 @@ const DEFINICIONES = {
   palabra_ciencia:
     "Comprensión sobrenatural de la Palabra para situaciones específicas.",
   fe: "Confianza extraordinaria en Dios, incluso en circunstancias imposibles.",
-  sanidades:
-    "Capacidad espiritual para sanar enfermedades.",
+  sanidades: "Capacidad espiritual para sanar enfermedades.",
   milagros: "Actos sobrenaturales que confirman la autoridad del evangelio.",
   profecia:
     "Declaración inspirada para corregir, exhortar y revelar la voluntad de Dios.",
@@ -308,10 +307,15 @@ const SpiritualGiftsTest = () => {
             }}
           >
             <ProgressBar
-              now={((Math.min(currentIndex + 1, realQuestions.length)) / realQuestions.length) * 100}
+              now={
+                (Math.min(currentIndex + 1, realQuestions.length) /
+                  realQuestions.length) *
+                100
+              }
               label={
                 <span style={{ fontWeight: "bold", fontSize: "1.35em" }}>
-                  {Math.min(currentIndex + 1, realQuestions.length)}/{realQuestions.length}
+                  {Math.min(currentIndex + 1, realQuestions.length)}/
+                  {realQuestions.length}
                 </span>
               }
               className="mb-3"
