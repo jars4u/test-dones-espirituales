@@ -43,7 +43,7 @@ const QUESTIONS = [
   },
   {
     id: 7,
-    text: "He sentido que la oración ha sido respondida con sanidad física o espiritual.",
+    text: "He sentido que mis oraciones han sido respondidas con sanidad física o espiritual.",
     category: "sanidades",
   },
   {
@@ -53,12 +53,12 @@ const QUESTIONS = [
   },
   {
     id: 9,
-    text: "He tenido momentos en que una palabra en lenguas fue claramente interpretada y edificó a otros.",
+    text: "He tenido momentos en que palabras en lenguas fueron claramente interpretadas y edificaron a otros.",
     category: "interpretacion",
   },
   {
     id: 10,
-    text: "He participado en momentos donde alguien fue sanado o consolado de forma evidente.",
+    text: "He sido parte de momentos donde alguien fue sanado o consolado de forma evidente.",
     category: "sanidades",
   },
   {
@@ -74,7 +74,7 @@ const QUESTIONS = [
   {
     id: 13,
     text: "He sentido una convicción fuerte y clara para hablar de parte de Dios en momentos precisos.",
-    category: "profecia",
+    category: "palabra_ciencia",
   },
   {
     id: 14,
@@ -89,22 +89,22 @@ const QUESTIONS = [
   {
     id: 16,
     text: "He visto que mi fe ha inspirado a otros a confiar en Dios en medio de problemas.",
-    category: "interpretacion",
+    category: "fe",
   },
   {
     id: 17,
     text: "He hablado en público con palabras que han motivado o guiado a otros hacia Dios.",
-    category: "milagros",
+    category: "profecia",
   },
   {
     id: 18,
     text: "En circunstancias difíciles, he recibido una percepción profunda para actuar con sabiduría espiritual.",
-    category: "interpretacion",
+    category: "palabra_sabiduria",
   },
   {
     id: 19,
     text: "He experimentado una fe firme que me ha sostenido cuando parecía imposible seguir adelante.",
-    category: "palabra_ciencia",
+    category: "fe",
   },
   {
     id: 20,
@@ -114,7 +114,7 @@ const QUESTIONS = [
   {
     id: 21,
     text: "He sentido la convicción de que Dios obró milagrosamente en alguna situación cercana.",
-    category: "sanidades",
+    category: "milagros",
   },
   {
     id: 22,
@@ -124,12 +124,12 @@ const QUESTIONS = [
   {
     id: 23,
     text: "En alguna ocasión, he sido testigo de eventos que no tienen explicación natural.",
-    category: "sanidades",
+    category: "milagros",
   },
   {
     id: 24,
     text: "He sabido cuándo era necesario advertir a otros sobre algo que venía en contra de la palabra de Dios.",
-    category: "profecia",
+    category: "palabra_ciencia",
   },
   {
     id: 25,
@@ -174,13 +174,13 @@ const DEFINICIONES = {
     "Comprensión sobrenatural de la Palabra para situaciones específicas.",
   fe: "Confianza extraordinaria en Dios, incluso en circunstancias imposibles.",
   sanidades:
-    "Capacidad espiritual para sanar enfermedades como señal apostólica.",
+    "Capacidad espiritual para sanar enfermedades.",
   milagros: "Actos sobrenaturales que confirman la autoridad del evangelio.",
   profecia:
-    "Declaración inspirada para exhortar o revelar la voluntad de Dios.",
+    "Declaración inspirada para corregir, exhortar y revelar la voluntad de Dios.",
   discernimiento:
     "Habilidad para distinguir si una manifestación es del Espíritu.",
-  lenguas: "Hablar en lenguas no aprendidas, señal temporal para edificación.",
+  lenguas: "Hablar en lenguas no aprendidas para edificación.",
   interpretacion:
     "Traducir lenguas para edificar la iglesia cuando se dan públicamente.",
 };
