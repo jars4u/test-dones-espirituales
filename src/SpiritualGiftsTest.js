@@ -1,3 +1,4 @@
+
 import React, { useState, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
@@ -9,179 +10,34 @@ import {
   Modal,
 } from "react-bootstrap";
 import SlideQuestion from "./slideQuestion";
+import { QUESTIONS, CATEGORIES_LABEL, DEFINICIONES, MINISTERIOS_SUGERIDOS } from "./DATA";
 
-const QUESTIONS = [
-  {
-    id: 1,
-    text: "He experimentado una oración fluida en un idioma que no conozco y que edificó mi espíritu.",
-    category: "lenguas",
-  },
-  {
-    id: 2,
-    text: "He sentido la convicción de interceder por sanidad y luego he visto resultados concretos.",
-    category: "sanidades",
-  },
-  {
-    id: 3,
-    text: "He sentido con claridad que debía evitar ciertas enseñanzas o líderes espirituales.",
-    category: "discernimiento",
-  },
-  {
-    id: 4,
-    text: "He experimentado paz y confirmación interior después de entregar una palabra o consejo espiritual.",
-    category: "palabra_sabiduria",
-  },
-  {
-    id: 5,
-    text: "He alentado a otros a confiar en Dios cuando enfrentaban pruebas duras.",
-    category: "fe",
-  },
-  {
-    id: 6,
-    text: "He podido explicar verdades bíblicas que otros no entendían claramente.",
-    category: "palabra_ciencia",
-  },
-  {
-    id: 7,
-    text: "He sido instrumento para traer consuelo profundo a personas quebrantadas.",
-    category: "sanidades",
-  },
-  {
-    id: 8,
-    text: "He sentido que debía hablar con alguien y lo que dije fue justo lo que necesitaba oír.",
-    category: "profecia",
-  },
-  {
-    id: 9,
-    text: "He orado creyendo firmemente que Dios respondería, y lo ha hecho.",
-    category: "fe",
-  },
-  {
-    id: 10,
-    text: "He presenciado eventos que no tienen explicación natural tras orar con fe.",
-    category: "milagros",
-  },
-  {
-    id: 11,
-    text: "He sentido en momentos importantes una claridad que me ayuda a tomar decisiones difíciles.",
-    category: "palabra_sabiduria",
-  },
-  {
-    id: 12,
-    text: "He entregado mensajes que ayudaron a otros a corregir su camino espiritual.",
-    category: "profecia",
-  },
-  {
-    id: 13,
-    text: "He experimentado una comprensión profunda de pasajes bíblicos sin haberlos estudiado previamente.",
-    category: "palabra_ciencia",
-  },
-  {
-    id: 14,
-    text: "He compartido palabras que han impactado profundamente a otros en su caminar con Dios.",
-    category: "profecia",
-  },
-  {
-    id: 15,
-    text: "He aplicado conocimiento bíblico de manera precisa ante preguntas difíciles que otros me han hecho.",
-    category: "palabra_ciencia",
-  },
-  {
-    id: 16,
-    text: "He orado con expectativa y he visto a Dios obrar de forma extraordinaria.",
-    category: "milagros",
-  },
-  {
-    id: 17,
-    text: "He reconocido cuando una enseñanza o experiencia no provenía del Espíritu de Dios.",
-    category: "discernimiento",
-  },
-  {
-    id: 18,
-    text: "He sido testigo de provisiones o respuestas que claramente fueron sobrenaturales.",
-    category: "milagros",
-  },
-  {
-    id: 19,
-    text: "He aplicado enseñanzas bíblicas que han cambiado el rumbo de situaciones en mi vida o en la de otros.",
-    category: "palabra_sabiduria",
-  },
-  {
-    id: 20,
-    text: "He comprendido claramente el significado de una lengua hablada por otro creyente.",
-    category: "interpretacion",
-  },
-  {
-    id: 21,
-    text: "He ayudado a interpretar oraciones en lenguas en reuniones para que otros comprendieran el mensaje.",
-    category: "interpretacion",
-  },
-  {
-    id: 22,
-    text: "He experimentado una fe firme que me ha sostenido cuando todo parecía en contra.",
-    category: "fe",
-  },
-  {
-    id: 23,
-    text: "En momentos de adoración o intercesión he hablado en lenguas sin control consciente.",
-    category: "lenguas",
-  },
-  {
-    id: 24,
-    text: "Después de una manifestación en lenguas, he recibido entendimiento para explicarlo a otros.",
-    category: "interpretacion",
-  },
-  {
-    id: 25,
-    text: "He percibido influencias espirituales negativas en ambientes o personas sin que nadie me lo dijera.",
-    category: "discernimiento",
-  },
-  {
-    id: 26,
-    text: "Siento que orar en lenguas fortalece mi relación personal con Dios.",
-    category: "lenguas",
-  },
-  {
-    id: 27,
-    text: "He tenido una certeza profunda de que Dios obraría, incluso cuando todo parecía en contra.",
-    category: "fe",
-  },
-  // Slide final de cierre (no es pregunta real)
-  {
-    id: 28,
-    text: "¡Has llegado al final del test!",
-    category: null,
-    isFinalSlide: true,
-  },
-];
+const WEIGHTED_VALUES = { 1: 0, 2: 1, 3: 2, 4: 3 };
 
-const CATEGORIES_LABEL = {
-  palabra_sabiduria: "Palabra de Sabiduría",
-  palabra_ciencia: "Palabra de Ciencia",
-  fe: "Fe",
-  sanidades: "Sanidades",
-  milagros: "Milagros",
-  profecia: "Profecía",
-  discernimiento: "Discernimiento de Espíritus",
-  lenguas: "Diversos Géneros de Lenguas",
-  interpretacion: "Interpretación de Lenguas",
-};
+const calculateTopResults = (responses, questions) => {
+  const scores = {};
+  const counts = {};
 
-const DEFINICIONES = {
-  palabra_sabiduria:
-    "Aplicación práctica e iluminada de la verdad bíblica en situaciones complejas.",
-  palabra_ciencia:
-    "Comprensión sobrenatural de la Palabra para situaciones específicas.",
-  fe: "Confianza extraordinaria en Dios, incluso en circunstancias imposibles.",
-  sanidades: "Capacidad espiritual para sanar enfermedades.",
-  milagros: "Actos sobrenaturales que confirman la autoridad del evangelio.",
-  profecia:
-    "Declaración inspirada para corregir, exhortar y revelar la voluntad de Dios.",
-  discernimiento:
-    "Habilidad para distinguir si una manifestación es del Espíritu.",
-  lenguas: "Hablar en lenguas no aprendidas para edificación.",
-  interpretacion:
-    "Traducir lenguas para edificar la iglesia cuando se dan públicamente.",
+  questions.forEach((q) => {
+    if (!q.category) return;
+    scores[q.category] =
+      (scores[q.category] || 0) + WEIGHTED_VALUES[responses[q.id] || 0];
+    counts[q.category] = (counts[q.category] || 0) + 1;
+  });
+
+  const results = Object.keys(scores).map((cat) => {
+    const score = scores[cat];
+    const max = counts[cat] * WEIGHTED_VALUES[4];
+    const percent = Math.round((score / max) * 100);
+    return { cat, percent, label: CATEGORIES_LABEL[cat] };
+  });
+
+  const filtered = results
+    .filter((r) => r.percent >= 70)
+    .sort((a, b) => b.percent - a.percent)
+    .slice(0, 3);
+
+  return filtered.length > 0 ? filtered : null;
 };
 
 const SpiritualGiftsTest = () => {
@@ -191,20 +47,17 @@ const SpiritualGiftsTest = () => {
   const [slideDirection, setSlideDirection] = useState("");
   const [started, setStarted] = useState(false);
   const [showExitModal, setShowExitModal] = useState(false);
-  const questionRef = useRef();
-  // Solo preguntas reales (sin el slide final)
+  const [showIgleModal, setShowIgleModal] = useState(false);
+  console.log("responses", responses);
+
   const realQuestions = QUESTIONS.filter((q) => !q.isFinalSlide);
-  // Solo contar respuestas a preguntas reales (id <= realQuestions.length)
   const realResponsesCount = Object.keys(responses).filter(
     (id) => parseInt(id) <= realQuestions.length
   ).length;
   const progress = (realResponsesCount / realQuestions.length) * 100;
-  let progressVariant = "warning"; // Naranja para poco progreso
-  if (progress >= 66) {
-    progressVariant = "success";
-  } else if (progress >= 33) {
-    progressVariant = "info";
-  }
+  let progressVariant = "warning";
+  if (progress >= 66) progressVariant = "success";
+  else if (progress >= 33) progressVariant = "info";
 
   const handleSelect = (id, val) => {
     setResponses((prev) => ({ ...prev, [id]: val }));
@@ -217,7 +70,6 @@ const SpiritualGiftsTest = () => {
     }, 600);
   };
 
-  // Animación para retroceder
   const handleBack = () => {
     setSlideDirection("right");
     setTimeout(() => {
@@ -226,23 +78,14 @@ const SpiritualGiftsTest = () => {
     }, 600);
   };
 
-  // Mostrar resultados si todas las preguntas reales han sido respondidas
   const handleSubmit = () => {
     if (realResponsesCount === realQuestions.length) {
       setSubmitted(true);
     }
   };
 
-  const topResults = () => {
-    const scores = {};
-    QUESTIONS.forEach((q) => {
-      scores[q.category] = (scores[q.category] || 0) + (responses[q.id] || 0);
-    });
-    return Object.entries(scores)
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, 3)
-      .map(([cat, score]) => ({ cat, score, label: CATEGORIES_LABEL[cat] }));
-  };
+  const resultData = calculateTopResults(responses, QUESTIONS);
+  console.log("resultData", resultData);
 
   return (
     <Container className="my-5">
@@ -266,9 +109,42 @@ const SpiritualGiftsTest = () => {
               <img
                 src="/Jovenes LOGO.png"
                 alt="Logo Jóvenes"
-                style={{ maxWidth: 250, height: "auto" }}
+                style={{ maxWidth: 250, height: "auto", cursor: "pointer" }}
+                onClick={() => setShowIgleModal(true)}
               />
             </div>
+            {/* Modal de advertencia para redirección */}
+            <Modal
+              show={showIgleModal}
+              onHide={() => setShowIgleModal(false)}
+              centered
+            >
+              <Modal.Body>
+                Serás redirigido a la página web de la Iglesia Cristiana
+                Filadelfia y se cancelará el test. ¿Deseas continuar?
+              </Modal.Body>
+              <Modal.Footer>
+                <Button
+                  variant="secondary"
+                  onClick={() => setShowIgleModal(false)}
+                >
+                  No, permanecer aquí
+                </Button>
+                <Button
+                  variant="danger"
+                  onClick={() => {
+                    setShowIgleModal(false);
+                    setStarted(false);
+                    setSubmitted(false);
+                    setResponses({});
+                    setCurrentIndex(0);
+                    window.location.href = "https://iglefiladelfia.com/";
+                  }}
+                >
+                  Sí, ir a la web
+                </Button>
+              </Modal.Footer>
+            </Modal>
             {/* <h5 className="text-center">Ministerio de Jóvenes con propósito</h5>
             <h5 className="text-center mb-4">Iglesia Cristiana Filadelfia</h5> */}
             <h1 className="text-center mb-4">
@@ -331,15 +207,42 @@ const SpiritualGiftsTest = () => {
               <img
                 src="/Jovenes LOGO.png"
                 alt="Logo Jóvenes"
-                style={{
-                  maxWidth: window.innerWidth <= 576 ? 150 : 250,
-                  width: "100%",
-                  height: "auto",
-                  cursor: "pointer",
-                }}
-                onClick={() => setShowExitModal(true)}
+                style={{ maxWidth: 250, height: "auto", cursor: "pointer" }}
+                onClick={() => setShowIgleModal(true)}
               />
             </div>
+            {/* Modal de advertencia para redirección */}
+            <Modal
+              show={showIgleModal}
+              onHide={() => setShowIgleModal(false)}
+              centered
+            >
+              <Modal.Body>
+                Serás redirigido a la página web de la Iglesia Cristiana
+                Filadelfia y se cancelará el test. ¿Deseas continuar?
+              </Modal.Body>
+              <Modal.Footer>
+                <Button
+                  variant="secondary"
+                  onClick={() => setShowIgleModal(false)}
+                >
+                  No, permanecer aquí
+                </Button>
+                <Button
+                  variant="danger"
+                  onClick={() => {
+                    setShowIgleModal(false);
+                    setStarted(false);
+                    setSubmitted(false);
+                    setResponses({});
+                    setCurrentIndex(0);
+                    window.location.href = "https://iglefiladelfia.com/";
+                  }}
+                >
+                  Sí, ir a la web
+                </Button>
+              </Modal.Footer>
+            </Modal>
             {/* Modal de confirmación para salir */}
             <Modal
               show={showExitModal}
@@ -475,9 +378,9 @@ const SpiritualGiftsTest = () => {
                         {/* Círculos de opciones */}
                         <div
                           className="d-flex justify-content-center align-items-center flex-nowrap"
-                          style={{ gap: "12px" }}
+                          style={{ gap: "25px" }}
                         >
-                          {[1, 2, 3, 4, 5].map((n) => (
+                          {[1, 2, 3, 4].map((n) => (
                             <div
                               key={n}
                               style={{
@@ -570,7 +473,7 @@ const SpiritualGiftsTest = () => {
                             textAlign: "center",
                           }}
                         >
-                          Rara vez
+                          Alguna vez
                         </span>
                         <span
                           style={{
@@ -579,16 +482,7 @@ const SpiritualGiftsTest = () => {
                             textAlign: "center",
                           }}
                         >
-                          A veces
-                        </span>
-                        <span
-                          style={{
-                            fontSize: "0.78rem",
-                            minWidth: 38,
-                            textAlign: "center",
-                          }}
-                        >
-                          Casi siempre
+                          A menudo
                         </span>
                         <span
                           style={{
@@ -604,6 +498,23 @@ const SpiritualGiftsTest = () => {
                   </SlideQuestion>
                 )}
 
+                {/* Botón cancelar solo si NO está el botón VER RESULTADOS */}
+                {!(
+                  currentIndex === QUESTIONS.length - 1 &&
+                  realResponsesCount === realQuestions.length
+                ) && (
+                  <div className="d-flex justify-content-center">
+                    <Button
+                      variant="outline-danger"
+                      size="sm"
+                      onClick={() => setShowExitModal(true)}
+                      className="mt-5"
+                    >
+                      <b>CANCELAR TEST</b>
+                    </Button>
+                  </div>
+                )}
+
                 {currentIndex === QUESTIONS.length - 1 &&
                   realResponsesCount === realQuestions.length && (
                     <Button
@@ -617,26 +528,56 @@ const SpiritualGiftsTest = () => {
               </>
             ) : (
               <div className="text-center">
-                <h3 className="mb-4">Tus 3 Dones Principales</h3>
-                {topResults().map((r) => (
-                  <Card
-                    key={r.cat}
-                    className="mb-3 mx-auto"
-                    style={{ maxWidth: "600px" }}
+                <h3 className="mb-4">
+                  {resultData ? "Tus Dones Principales" : "Resultado del Test"}
+                </h3>
+                {resultData ? (
+                  resultData.map((r) => (
+                    <Card
+                      key={r.cat}
+                      className="mb-3 mx-auto"
+                      style={{ maxWidth: "600px" }}
+                    >
+                      <Card.Body>
+                        <Card.Title>
+                          <Badge bg="info" pill>
+                            {r.label}
+                          </Badge>{" "}
+                          — Afinidad: <strong>{r.percent}%</strong>
+                        </Card.Title>
+                        <Card.Text className="mt-2">
+                          {DEFINICIONES[r.cat]}
+                        </Card.Text>
+                        <hr />
+                        <strong>Ministerios sugeridos de nuestra iglesia:</strong>
+                        <div>
+                          {MINISTERIOS_SUGERIDOS[r.cat].map((m, i) => (
+                            <div key={i}>{m}</div>
+                          ))}
+                        </div>
+                      </Card.Body>
+                    </Card>
+                  ))
+                ) : (
+                  <p
+                    className="text-center mb-3 px-5"
+                    style={{ fontSize: "0.9rem" }}
                   >
-                    <Card.Body>
-                      <Card.Title>
-                        <Badge bg="info" pill>
-                          {r.label}
-                        </Badge>{" "}
-                        — Puntaje: <strong>{r.score}</strong>
-                      </Card.Title>
-                      <Card.Text className="mt-2">
-                        {DEFINICIONES[r.cat]}
-                      </Card.Text>
-                    </Card.Body>
-                  </Card>
-                ))}
+                    ⚠️{" "}
+                    <strong>No pudimos detectar afinidad con algún don.</strong>{" "}
+                    <br />
+                    ¡Sigue creciendo en tu fe 🕊️ y en tu experiencia con el
+                    Señor, y vuelve a intentarlo más adelante! 💪📖
+                  </p>
+                )}
+                <p
+                  className="text-center bg-warning p-2 border rounded"
+                  style={{ fontSize: "0.75rem" }}
+                >
+                  <strong>Recuerda:</strong> este resultado no es absoluto. Solo
+                  el Espíritu Santo, a través de tu caminar fiel y la comunidad
+                  de creyentes, puede confirmar tus dones.
+                </p>
                 <Button
                   variant="secondary"
                   onClick={() => {
